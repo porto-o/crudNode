@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-//const port = 4000;
+const port = 4000;
 const cors = require("cors"); //npm i cors
 
 require("./database"); // npm i mongoose
@@ -86,3 +86,6 @@ app.put("/book", async (req, res) => {
   res.json({ msg: "libro actualizado" });
 });
 
+app.listen(port, () => {
+  console.log(`app listening at http://localhost:${port}`);
+});
