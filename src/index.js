@@ -1,14 +1,24 @@
 const express = require("express");
 const app = express();
-const port = 4000;
+//const port = 4000;
 const cors = require("cors"); //npm i cors
 
 require("./database"); // npm i mongoose
 const Book = require("./model/Book");
 
 //app.use(fileUpload())
-app.use(cors());
 app.use(express.json());
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+      "Access-Control-Allow-Headers",
+      "Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method"
+  );
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+  res.header("Allow", "GET, POST, OPTIONS, PUT, DELETE");
+  next();
+});
 
 app.get("/book", async (req, res) => {
   let books = await Book.find();
@@ -76,6 +86,3 @@ app.put("/book", async (req, res) => {
   res.json({ msg: "libro actualizado" });
 });
 
-app.listen(port, () => {
-  console.log(`app listening at http://localhost:${port}`);
-});
