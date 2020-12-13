@@ -1,7 +1,7 @@
 {
-  "name": "express-mongodb",
+  "name": "Libreria_Porto",
   "version": "1.0.0",
-  "description": "rest express",
+  "description": "Sistema de crud en react y nodeJS",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.js",
