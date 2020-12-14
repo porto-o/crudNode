@@ -62,6 +62,7 @@ app.get("/fecha/:fechaBuscar", async (req, res) => {
 
 app.get("/capitulo/:capituloBuscar", async (req, res) => {
   const { capituloBuscar } = req.params;
+  console.log(req.params)
   let books = await Book.find({
     capitulos: new RegExp("^" + capituloBuscar + "$", "i")
   });
@@ -70,7 +71,7 @@ app.get("/capitulo/:capituloBuscar", async (req, res) => {
 
 app.get("/area/:capituloBuscar", async (req, res) => {
   const { areaBuscar } = req.params;
-  console.log(areaBuscar)
+  console.log(req.params)
   let books = await Book.find({
     area: new RegExp("^" + areaBuscar + "$", "i")
   });
