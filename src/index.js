@@ -69,7 +69,7 @@ app.get("/capitulo/:capituloBuscar", async (req, res) => {
   res.json(books);
 });
 
-app.get("/area/:capituloBuscar", async (req, res) => {
+app.get("/area/:areaBuscar", async (req, res) => {
   const { areaBuscar } = req.params;
   console.log(req.params)
   let books = await Book.find({
