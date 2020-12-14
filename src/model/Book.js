@@ -8,7 +8,6 @@ const BookSchema = Schema({
   editorial: String,
   capitulos: String,
   area: String,
-
 })
 
 module.exports = model('Book', BookSchema)
