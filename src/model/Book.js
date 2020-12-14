@@ -5,7 +5,9 @@ const BookSchema = Schema({
   edicion: String,
   autor: String,
   datePub: String,
-  editorial: String
+  editorial: String,
+  capitulos: String,
+  area: String,
 
 })
 

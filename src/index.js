@@ -1,12 +1,11 @@
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 4000;
-const cors = require("cors"); //npm i cors
+const cors = require("cors");
 
-require("./database"); // npm i mongoose
+require("./database");
 const Book = require("./model/Book");
 
-//app.use(fileUpload())
 app.use(cors());
 app.use(express.json());
 
@@ -16,13 +15,14 @@ app.get("/book", async (req, res) => {
 });
 
 app.post("/book", async (req, res) => {
-  const { nombre, edicion, autor, datePub, editorial } = req.body;
-  if(nombre === "" || edicion === "" || autor === "" || datePub === "" || editorial===""){
+  const { nombre, edicion, autor, datePub, editorial, capitulos, area } = req.body;
+  if(nombre === "" || edicion === "" || autor === "" || datePub === "" || editorial==="" || capitulos === "" || area === ""){
     res.json({msg:"Error"})
   }else {
-    const book = new Book({nombre, edicion, autor, datePub, editorial});
+    const book = new Book({nombre, edicion, autor, datePub, editorial, capitulos, area});
+    console.log(book)
     await book.save();
-    res.json({msg: "libro agregado"});
+    res.json({msg: "libro agregado" });
   }
 });
 
@@ -68,10 +68,10 @@ app.get("/book/obtener/:id", async (req, res) => {
 });
 
 app.put("/book", async (req, res) => {
-  const { id, nombre, edicion, autor, datePub, editorial } = req.body;
+  const { id, nombre, edicion, autor, datePub, editorial, capitulos, area } = req.body;
   await Book.updateOne(
     { _id: id },
-    { $set: { nombre, edicion, autor, datePub, editorial } }
+    { $set: { nombre, edicion, autor, datePub, editorial, capitulos, area } }
   );
   res.json({ msg: "libro actualizado" });
 });
