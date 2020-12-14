@@ -60,6 +60,25 @@ app.get("/fecha/:fechaBuscar", async (req, res) => {
   res.json(books);
 });
 
+app.get("/capitulo/:capituloBuscar", async (req, res) => {
+  const { capituloBuscar } = req.params;
+  let books = await Book.find({
+    capitulo: new RegExp("^" + capituloBuscar + "$", "i")
+
+  });
+  res.json(books);
+});
+
+app.get("/area/:capituloBuscar", async (req, res) => {
+  const { areaBuscar } = req.params;
+  let books = await Book.find({
+    area: new RegExp("^" + areaBuscar + "$", "i")
+
+  });
+  res.json(books);
+});
+
+
 
 app.get("/book/obtener/:id", async (req, res) => {
   const { id } = req.params;
